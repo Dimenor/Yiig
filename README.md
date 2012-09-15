@@ -1,4 +1,4 @@
 Yiig
 ====
 
-Twig non-obstructive implementation for Yii framework
+Nonobstructive Twig Template Engine Implementation in Yii Framework
