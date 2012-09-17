@@ -10,9 +10,12 @@ Então desenvolvi uma pequena biblioteca que integra a twig em meus projetos, em
 
 ## Como usar:
 * **protected/vendors/Twig** e **protected/vendors/Yiig**
-Descompacte o pacote da Twig de {pacote-da-versao-baixada}/lib/Twig para de protected/vendors/Twig e cole a pasta yiig deste repositorio ao lado dela.
 
-* protected/config/main.php
+
+Descompacte o pacote da Twig de {pacote-da-versao-baixada}/lib/Twig para de protected/vendors/Twig e cole a pasta Yiig deste repositorio ao lado dela.
+
+* **protected/config/main.php**
+
 Cole o codigo seguinte dentro de ['params'] e mude conforme sua necessidade
 
 ```php
