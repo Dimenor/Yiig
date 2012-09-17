@@ -80,3 +80,7 @@ Para as paginas estáticas, como a AboutPage do template padrão do Yii, basta a
 		);
 	}
 ```
+
+## Filtros e Funções
+O repositorio conta com dois exemplos, um de cada, nos arquivos *Yiig/filters.php* e *Yiig/functions.php*
+É possivel adicionar ou remover os metodos nesses arquivos, ou mudar o arquivo de definição no */protected/config/main.php*
