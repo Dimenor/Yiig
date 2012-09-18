@@ -4,7 +4,7 @@
 * Yii Framework   - http://yiiframework.com
 * Twig 				- http://twig.sensiolabs.org
 
-Eu gosto muito do twig template engine, desenvolvida por Fabien Potencier, mas nao encontrei uma forma de implementar no Yii que não modificasse o view renderer. E não era isso que eu queria.
+Eu gosto muito da twig template engine, sistema de templates desenvolvido por Fabien Potencier, mas não encontrei uma forma de implementá-la no Yii de modo que não modificasse o view renderer. E não era isso que eu queria.
 
 Então desenvolvi uma pequena biblioteca que integra a twig em meus projetos, em que ao inves de mudar o metodo de renderização dos controladores, adiciona um novo método.
 
