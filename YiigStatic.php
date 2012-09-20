@@ -15,6 +15,7 @@ class YiigStatic extends CViewAction {
 		//Discover the view to render and use the patterns
 		$view_to_render = $this->getRequestedView();
 		$controller = $this->getController();
+		$module = $this->getModule();
 
 		$this->onBeforeRender($event = new CEvent($this));
 		if(!$event->handled)

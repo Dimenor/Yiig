@@ -5,27 +5,22 @@
  * Twig implementation to Yii framework
  */
 class Yiig {
-	public static function makeTwigRender($file, array $data = array(), $contextDir = null, $controllerDir = null){
-		// import the autoloader and send it to Yii
-    	require Yii::getPathOfAlias('application.vendors.Twig').'/Autoloader.php';
+    public static function makeTwigRender($file, array $data = array(), $contextDir = null, $controllerDir = null){
+        // import the autoloader and send it to Yii
+        require Yii::getPathOfAlias('application.vendors.Twig').'/Autoloader.php';
         Yii::registerAutoloader(array('Twig_Autoloader', 'autoload'), true);
         
-        //define the default context and controller(if any) directories
-        $views 		    = array();
-        $contextDir 	= (is_null($contextDir)) ? 'application.views' : $contextDir;
-        $controllerDir	= (is_null($controllerDir)) ? '.generic'  : '.'.$controllerDir;
+        //register default array of paths
+        $contextDir = (is_null($contextDir)) ? array('application.views') : $contextDir;
 
-        // Set the array with the globals view directories for twig, based on the context and controller name, if exists.
-        // It always be {baseview}/layouts, {baseview}/generic (for includes or other generic porpouses) 
-        // and {baseview}/{controller} if any controller provided
-        array_push($views, _dir($contextDir.'.layouts'));
-        array_push($views, _dir($contextDir.$controllerDir));
-        if($controllerDir != '.generic')
-    		array_push($views, _dir($contextDir.'.generic'));
+        //register the controllers directory
+        $contextDir = array_map("_add", $contextDir, array($controllerDir));
 
-    	//generates the loaders of Twig
-        $loader = new Twig_Loader_Filesystem($views);
+        //generates the loaders of Twig
         $yiig_params = Yii::app()->params->yiig;
+        $yiig_params['views_dir'] = array_map("_dir", $contextDir);
+
+        $loader = new Twig_Loader_Filesystem($yiig_params['views_dir']);
         $twig = new Twig_Environment($loader, $yiig_params);
 
         if(isset($yiig_params['filters'])){
@@ -44,10 +39,14 @@ class Yiig {
 
         //return the string generated from Twig to the caller
         return $twig->render($file.$yiig_params['extension'], $data);
-	}
+    }
 }
 
 function _dir($dir){
-	//Just a alias to get path alias in Yii
-	return Yii::getPathOfAlias($dir);
+    //Just a alias to get path alias in Yii
+    return Yii::getPathOfAlias($dir);
+}
+
+function _add($n, $m){
+    return $n.'.'.$m;
 }

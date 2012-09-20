@@ -19,7 +19,12 @@ Cole o codigo seguinte dentro de ['params'] e mude conforme sua necessidade
 	//default yiig config
 	'yiig' => array(
 		'extension' => '.twig', //file default extension
-		
+		//views directory indexed by module->id. application represents the default module
+			'views_dir' => array(
+				'application' => array('application.views', 'application.views.layouts'),
+				'site' => array('site.views', 'site.views.layouts'),
+				'admin' => array('admin.views', 'admin.views.layouts'),
+			),
 		// In this array you can use the defined options for twig: http://twig.sensiolabs.org/doc/api.html#environment-options
 		'cache' => Yii::getPathOfAlias('application.runtime.twig_cache'), //false to disable cache
 		'auto_reload' => true, //This recompiles the templates when a change is detected
