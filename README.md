@@ -58,11 +58,12 @@ Mas para manter simples e reutilizável nos nossos controladores, podemos simple
 	/**
 	* Método de implementacao nao obstrutiva do Twig para todos os controladores
 	* @param $file Nome do template a ser renderizado
-	* @param $data Matriz com dados a serem enviados a view twig
+	* @param $data Matriz com os dados enviados a view
 	*/
 	public function twig($file, array $data = array()){
 		require_once Yii::getPathOfAlias('application.vendors.Yiig.Yiig').'.php';
-		echo Yiig::makeTwigRender($file, $data, 'application.views', $this->getId());		
+		$module = (!isset($this->module)) ? 'application' : $this->module->id;
+		echo Yiig::makeTwigRender($file, $data, Yii::app()->params['yiig']['views_dir'][$module], $this->getId());
 	}
 ```
 
